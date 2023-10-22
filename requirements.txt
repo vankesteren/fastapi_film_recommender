@@ -1,0 +1,5 @@
+polars
+connectorx
+scikit-learn
+fastapi
+uvicorn
