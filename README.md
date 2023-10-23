@@ -9,9 +9,21 @@
 
 ## Installation
 
-1. Install postgresql
-2. Clone this repo
-3. run `git clone https://github.com/JannikArndt/PostgreSQLSampleDatabase.git`
-4. run `create_database.bat` (or the `.sh` script from the original repo) to generate the database
-5. `docker build . -t recommender`
-6. `docker run recommender`
+1. Install PostgreSQL & Docker
+2. Clone this repo and `cd` to it.
+3. Install and generate the example database:
+    ```sh
+    git clone https://github.com/xzilla/pagila.git
+    createdb -U postgres pagila
+    psql -U postgres -d pagila -f pagila/pagila-schema.sql
+    psql -U postgres -d pagila -f pagila/pagila-data.sql
+    psql -U postgres -d pagila -c "CREATE extension tablefunc;"
+    ```
+4. Build the docker container
+    ```sh
+    docker build . -t recommender
+    ```
+5. Run the docker container
+    ```
+    docker run recommender
+    ```
