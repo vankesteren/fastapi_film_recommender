@@ -7,9 +7,9 @@
 - ⚡ [FastAPI](https://fastapi.tiangolo.com/) for turning this into a microservice
 - 🐋 [Docker](https://www.docker.com/) for containerizing the whole application 
 
-## Installation
+## Installation & interactive use
 
-1. Install PostgreSQL & Docker
+1. Install PostgreSQL & python
 2. Clone this repo and `cd` to it.
 3. Install and generate the example database:
     ```sh
@@ -19,11 +19,23 @@
     psql -U postgres -d pagila -f pagila/pagila-data.sql
     psql -U postgres -d pagila -c "CREATE extension tablefunc;"
     ```
-4. Build the docker container
+4. Install python requirements:
+    ```sh
+    pip install -r requirements.txt
+    ```
+5. Run the recommender API via the `uvicorn` python package:
+    ```sh
+    uvicorn recommender:app
+    ```
+6. Navigate to [localhost:8000/recommender/1?n=5](https://localhost:8000/recommender/1?n=5)
+
+## Docker
+
+1. Build the docker container
     ```sh
     docker build . -t recommender
     ```
-5. Run the docker container
+2. Run the docker container
     ```
     docker run recommender
     ```
