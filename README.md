@@ -27,7 +27,7 @@
     ```sh
     uvicorn recommender:app
     ```
-6. Navigate to [localhost:8000/recommender/1?n=5](https://localhost:8000/recommender/1?n=5)
+6. Navigate to [localhost:8000/recommender/1?n=5](https://localhost:8000/recommender/1?n=5). See the docs at [localhost:8000/docs](https://localhost:8000/docs)
 
 ## Docker
 

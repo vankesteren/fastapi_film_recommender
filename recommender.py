@@ -1,7 +1,14 @@
+"""
+FastAPI recommender API using a pre-trained latent semantic analysis model.
+"""
 import pickle
+import warnings
 import numpy as np
 from fastapi import FastAPI
-from db_utils import psqldb
+from database import psqldb
+
+# turn off warning for sklearn transform conversion without column names
+warnings.filterwarnings(action='ignore', category=UserWarning)
 
 # Connect to database
 postgres_db = psqldb("pagila")
@@ -12,7 +19,16 @@ with open("model/tfidf_transformer.pkl", "rb") as trf_file:
 with open("model/model.pkl", "rb") as mod_file:
     model = pickle.load(mod_file)
 
+# define functions required for recommender
 def get_past_rentals(customer_id: int) -> list[int]:
+    """Get past rentals for a specific customer.
+    
+    Args:
+        customer_id: integer value of the requested customer.
+    Returns:
+        A list of integer film ids. If customer id 
+        does not exist, an empty list.
+    """
     result = postgres_db.run_query(
         f"""
         select inventory.film_id 
@@ -25,6 +41,14 @@ def get_past_rentals(customer_id: int) -> list[int]:
     return result[:,0].to_list()
 
 def get_film_information(film_ids: list[int]) -> list[dict]:
+    """Get film information for a list of film ids.
+
+    Args:
+        film_ids: list of integers of film ids.
+    
+    Returns:
+        film_id, title, year, description and rating for the films.
+    """
     sql_ref = tuple(film_ids) if len(film_ids) > 1 else f"({film_ids[0]})"
     result = postgres_db.run_query(
         f"""
@@ -36,9 +60,20 @@ def get_film_information(film_ids: list[int]) -> list[dict]:
     return result.to_dicts()
 
 
-def get_recommendations(articles_bought: list[int], n_rec=5) -> list[int]:
+def get_recommendations(rented_films: list[int], n_rec=5) -> list[int]:
+    """Get recommendations based on rented films.
+
+    Using a pre-trained latent semantic analysis model.
+
+    Args:
+        rented_films: list of integers of film_id
+        n_rec: number of recommendations desired
+    
+    Returns:
+        list of recommended film_ids
+    """
     x = np.zeros(1000, int)
-    for a in articles_bought:
+    for a in rented_films:
         x[a - 1] += 1
     w = model.transform(tfidf_transformer.transform([x]))
     xhat = model.inverse_transform(w)
@@ -47,19 +82,28 @@ def get_recommendations(articles_bought: list[int], n_rec=5) -> list[int]:
     recs: list[int] = []
     while len(recs) < n_rec:
         item = rank.pop()
-        if not item in articles_bought:
+        if not item in rented_films:
             recs.append(item)
     return recs
 
 # init fastapi
-app = FastAPI()
-
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
+app = FastAPI(
+    title="Movie recommendation API",
+    summary="Recommend movies based on past movie rentals",
+    version="0.1.0",
+    license_info={
+        "name": "MIT",
+        "url": "https://mit-license.org/"
+    }
+)
 
 @app.get("/customers/{customer_id}")
-def get_customer_by_id(customer_id: int):
+def get_customer_by_id(customer_id: int) -> list[dict]:
+    """# Get customer information.
+
+    This endpoint queries the database and returns
+    customer information.
+    """
     return postgres_db.run_query(
         f"""
         select * 
@@ -70,6 +114,11 @@ def get_customer_by_id(customer_id: int):
 
 @app.get("/recommend/{customer_id}")
 def recommend(customer_id: int, n: int = 5):
+    """# Get recommendations.
+
+    This endpoint queries the database for past
+    rentals and then returns a recommendation
+    """
     past_rentals = get_past_rentals(customer_id)
     recs = get_recommendations(past_rentals, n_rec=n)
     return get_film_information(recs)
