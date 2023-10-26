@@ -1,5 +1,6 @@
 polars
 connectorx
+pyarrow
 scikit-learn
 fastapi
 uvicorn

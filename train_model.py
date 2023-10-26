@@ -1,18 +1,18 @@
-
-import warnings
+"""Training latent semantic analysis model."""
 import pickle
-from database import psqldb
+import warnings
+
 import polars as pl
-import numpy as np
-from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.decomposition import TruncatedSVD
-import matplotlib.pyplot as plt
+from sklearn.feature_extraction.text import TfidfTransformer
+
+from database import PSQLdb
 
 # turn off warning for conversion without column names
-warnings.filterwarnings(action='ignore', category=UserWarning)
+warnings.filterwarnings(action="ignore", category=UserWarning)
 
 # set up database connection and run required queries
-postgres_db = psqldb("pagila")
+postgres_db = PSQLdb("pagila")
 rentals = postgres_db.run_sql_file("queries/all_rentals.sql")
 cids = postgres_db.run_query("select customer_id from customer")[:,0]
 fids = postgres_db.run_query("select film_id from film")[:,0]
@@ -21,7 +21,7 @@ fids = postgres_db.run_query("select film_id from film")[:,0]
 full_df = \
     pl.DataFrame({
         "customer_id": [cids],
-        "film_id": [fids]
+        "film_id": [fids],
     }). \
     explode("customer_id"). \
     explode("film_id"). \
@@ -34,7 +34,7 @@ rental_matrix = full_df.pivot(
     values="n",
     index="customer_id",
     columns="film_id",
-    aggregate_function="sum"
+    aggregate_function="sum",
 )
 
 # remove customers that did not rent anything
