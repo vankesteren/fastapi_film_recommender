@@ -17,6 +17,7 @@ class PSQLdb:
         host: str = "localhost",
         port: int = 5432,
     ):
+        """Initialize the database connector."""
         self.dbname = dbname
         self.user = user
         self.passwd = passwd

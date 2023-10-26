@@ -1,13 +1,13 @@
 """API for the film rental recommender system."""
-import os
 
 from fastapi import FastAPI
 
-from database import PSQLdb
-from recommender import get_film_information, get_past_rentals, get_recommendations
-
-# init db connection
-postgres_db = PSQLdb(dbname="pagila", host=os.environ.get("DB_HOSTNAME", "localhost"))
+from recommender import (
+    postgres_db,
+    get_film_information,
+    get_past_rentals,
+    get_recommendations,
+)
 
 # init fastapi
 app = FastAPI(
