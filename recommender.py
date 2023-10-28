@@ -6,13 +6,13 @@ from pathlib import Path
 
 import numpy as np
 
-from database import PSQLdb
+from database import PagilaDB
 
 # turn off warning for sklearn transform conversion without column names
 warnings.filterwarnings(action="ignore", category=UserWarning)
 
 # Connect to database
-postgres_db = PSQLdb(dbname="pagila", host=os.environ.get("DB_HOSTNAME", "localhost"))
+postgres_db = PagilaDB()
 
 # read model
 with Path("model/tfidf_transformer.pkl").open("rb") as trf_file:

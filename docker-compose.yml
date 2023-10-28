@@ -1,0 +1,22 @@
+services:
+  filmapi:
+    container_name: rental_recommender_api
+    build: 
+      context: .
+      dockerfile: dockerfiles/filmapi.dockerfile
+    depends_on:
+      - pagiladb
+    environment:
+      - DB_HOSTNAME=rental_database
+      - DB_PASSWORD=postgres
+      - DB_USER=postgres
+    ports:
+      - "8000:8000"
+  pagiladb:
+    container_name: rental_database
+    build: 
+      context: .
+      dockerfile: dockerfiles/pagiladb.dockerfile
+    environment:
+      - POSTGRES_DB=pagila
+      - POSTGRES_PASSWORD=postgres

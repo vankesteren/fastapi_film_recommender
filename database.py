@@ -53,6 +53,7 @@ class PagilaDB(PSQLdb):
         """Init the connection to the pagila database."""
         super().__init__(
             dbname=os.environ.get("DB_NAME", "pagila"),
+            user=os.environ.get("DB_USER", "postgres"),
             passwd=os.environ.get("DB_PASSWD", "postgres"),
             host=os.environ.get("DB_HOSTNAME", "localhost"),
             port=os.environ.get("DB_PORT", 5432),

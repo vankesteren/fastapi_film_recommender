@@ -19,7 +19,13 @@ app = FastAPI(
     license_info={"name": "MIT", "url": "https://mit-license.org/"},
 )
 
-app.mount("/", StaticFiles(directory="static", html=True), name="static")
+# Make resources in static folder available
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+@app.get("/")
+def get_index():
+    """# Serve the static landing page on root."""
+    return FileResponse(path="static/index.html")
 
 @app.get("/customers/{customer_id}")
 def get_customer_by_id(customer_id: int) -> list[dict]:
