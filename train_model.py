@@ -1,18 +1,19 @@
 """Training latent semantic analysis model."""
 import pickle
 import warnings
+from pathlib import Path
 
 import polars as pl
 from sklearn.decomposition import TruncatedSVD
 from sklearn.feature_extraction.text import TfidfTransformer
 
-from database import PSQLdb
+from database import PagilaDB
 
 # turn off warning for conversion without column names
 warnings.filterwarnings(action="ignore", category=UserWarning)
 
 # set up database connection and run required queries
-postgres_db = PSQLdb("pagila")
+postgres_db = PagilaDB()
 rentals = postgres_db.run_sql_file("queries/all_rentals.sql")
 cids = postgres_db.run_query("select customer_id from customer")[:, 0]
 fids = postgres_db.run_query("select film_id from film")[:, 0]
@@ -41,7 +42,9 @@ rental_matrix = full_df.pivot(
 )
 
 # remove customers that did not rent anything
-rental_matrix = rental_matrix.filter(pl.sum(pl.exclude("customer_id")) > 0)
+rental_matrix = rental_matrix.filter(
+    pl.sum_horizontal(pl.exclude("customer_id")) > 0
+)
 
 # transform to tfidf matrix
 tfidf_transformer = TfidfTransformer()
@@ -52,7 +55,7 @@ model = TruncatedSVD(n_components=20)
 model.fit(rental_matrix_tfidf)
 
 # store model
-with open("model/tfidf_transformer.pkl", "wb") as trf_file:
+with Path("model/tfidf_transformer.pkl").open("wb") as trf_file:
     pickle.dump(tfidf_transformer, file=trf_file)
-with open("model/model.pkl", "wb") as mod_file:
+with Path("model/model.pkl").open("wb")  as mod_file:
     pickle.dump(model, file=mod_file)

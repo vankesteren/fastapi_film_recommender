@@ -2,6 +2,7 @@
 import os
 import pickle
 import warnings
+from pathlib import Path
 
 import numpy as np
 
@@ -14,9 +15,9 @@ warnings.filterwarnings(action="ignore", category=UserWarning)
 postgres_db = PSQLdb(dbname="pagila", host=os.environ.get("DB_HOSTNAME", "localhost"))
 
 # read model
-with open("model/tfidf_transformer.pkl", "rb") as trf_file:
+with Path("model/tfidf_transformer.pkl").open("rb") as trf_file:
     tfidf_transformer = pickle.load(trf_file)
-with open("model/model.pkl", "rb") as mod_file:
+with Path("model/model.pkl").open("rb") as mod_file:
     model = pickle.load(mod_file)
 
 

@@ -1,6 +1,8 @@
 """API for the film rental recommender system."""
 
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 
 from recommender import (
     postgres_db,
@@ -17,6 +19,7 @@ app = FastAPI(
     license_info={"name": "MIT", "url": "https://mit-license.org/"},
 )
 
+app.mount("/", StaticFiles(directory="static", html=True), name="static")
 
 @app.get("/customers/{customer_id}")
 def get_customer_by_id(customer_id: int) -> list[dict]:

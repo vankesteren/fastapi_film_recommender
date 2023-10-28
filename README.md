@@ -13,21 +13,15 @@ The recommender is a relatively basic collaborative filtering method based on [l
 
 # Installation
 There are three different installation methods with various levels of containerization: 
-- Fully containerized API and database (recommended)
-- Containerized database, local python (recommended for development)
-- Fully local, not using docker at all (if you already have postgres)
+- 📦 Fully containerized API and database (recommended)
+- 💻 Containerized database, local python (recommended for development)
+- 🤓 Fully local, not using docker at all (if you already have postgres)
 
 ## Fully containerized API and database
-1. First, build the containers and create a network
-    ```sh
-    docker build . -f pagiladb.dockerfile -t pagiladb
-    docker build . -f filmapi.dockerfile -t filmapi
-    docker network create film-rec
-    ```
+1. First, clone this repository and start a terminal
 2. Then, run the docker containers in this network, exposing the API on port 8000.
     ```sh
-    docker run --name pagila_database -e POSTGRES_DB=pagila -e POSTGRES_PASSWORD=postgres --network film-rec pagiladb
-    docker run --name film_recommender -e DB_HOSTNAME=pagila_database -p 8000:8000 --network film-rec filmapi
+    docker compose up
     ```
 3. Navigate to [localhost:8000/recommender/1?n=5](https://localhost:8000/recommender/1?n=5) or see the docs at [localhost:8000/docs](https://localhost:8000/docs)
 
