@@ -11,6 +11,12 @@ The recommender is a relatively basic collaborative filtering method based on [l
 - ⚡ [FastAPI](https://fastapi.tiangolo.com/) for turning this into a microservice
 - 🐋 [Docker](https://www.docker.com/) for containerizing the whole application 
 
+## Structure
+
+The repo is structured as follows:
+
+![](img/recommender_diagram.svg)
+
 # Installation
 There are three different installation methods with various levels of containerization: 
 - 📦 Fully containerized API and database (recommended)
@@ -31,7 +37,7 @@ There are three different installation methods with various levels of containeri
 2. Clone this repo and `cd` to it
 3. Build and run the database dockerfile
     ```sh
-    docker build . -f pagiladb.dockerfile -t pagiladb
+    docker build . -f dockerfiles/pagiladb.dockerfile -t pagiladb
     docker run -p 5432:5432 -e POSTGRES_DB=pagila -e POSTGRES_PASSWORD=postgres pagiladb
     ```
 4. Install python requirements:
@@ -40,9 +46,9 @@ There are three different installation methods with various levels of containeri
     ```
 5. Run the recommender API via the `uvicorn` python package:
     ```sh
-    uvicorn film_recommender:app
+    uvicorn film_api:app
     ```
-6. Navigate to [localhost:8000/recommender/1?n=5](https://localhost:8000/recommender/1?n=5). See the docs at [localhost:8000/docs](https://localhost:8000/docs)
+6. Navigate to [localhost:8000/recommend/1?n=5](http://localhost:8000/recommend/1?n=5). See the docs at [localhost:8000/docs](http://localhost:8000/docs)
 
 ## Fully local installation
 1. Install PostgreSQL & python

@@ -1,0 +1,94 @@
+<mxfile host="app.diagrams.net" modified="2023-11-12T13:12:00.878Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0" etag="XkY2MdI56fh16FfIXV3G" version="22.1.0" type="device">
+  <diagram name="Page-1" id="hgK9O7wFYK8cDDtvCwnX">
+    <mxGraphModel dx="1434" dy="885" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Ct2jxEpFgsdgMBE1x0vL-1" value="&lt;div&gt;postgresql&lt;/div&gt;&lt;div&gt;database&lt;/div&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
+          <mxGeometry x="60" y="37.5" width="80" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="Ct2jxEpFgsdgMBE1x0vL-2" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="100" y="157.5" as="sourcePoint" />
+            <mxPoint x="100" y="277.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Ct2jxEpFgsdgMBE1x0vL-4" value="&lt;div&gt;train_model.py&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="297.5" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Ct2jxEpFgsdgMBE1x0vL-5" value="Full data query" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="110" y="197.5" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Ct2jxEpFgsdgMBE1x0vL-9" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="180" y="327" as="sourcePoint" />
+            <mxPoint x="320" y="327.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Ct2jxEpFgsdgMBE1x0vL-10" value="&lt;div&gt;model&lt;/div&gt;&lt;div&gt;serialization&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="210" y="287.5" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Ct2jxEpFgsdgMBE1x0vL-15" value="&lt;div&gt;model.pkl&lt;/div&gt;&lt;div&gt;tfidf_transformer.pkl&lt;br&gt;&lt;/div&gt;" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=10;" vertex="1" parent="1">
+          <mxGeometry x="354" y="287.5" width="146" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="Ct2jxEpFgsdgMBE1x0vL-18" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="426.5" y="277.5" as="sourcePoint" />
+            <mxPoint x="427" y="157.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Ct2jxEpFgsdgMBE1x0vL-19" value="&lt;div&gt;model&lt;/div&gt;&lt;div&gt;deserialization&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="440" y="217.5" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Ct2jxEpFgsdgMBE1x0vL-22" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=-0.017;exitY=1.333;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="Ct2jxEpFgsdgMBE1x0vL-23">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="160" y="77.5" as="sourcePoint" />
+            <mxPoint x="320" y="77.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Ct2jxEpFgsdgMBE1x0vL-23" value="&lt;div&gt;single customer&amp;nbsp;&lt;/div&gt;&lt;div&gt;query&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="190" y="37.5" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Ct2jxEpFgsdgMBE1x0vL-24" value="&lt;div&gt;pagiladb.dockerfile&lt;/div&gt;" style="swimlane;horizontal=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="20" width="140" height="125" as="geometry" />
+        </mxCell>
+        <mxCell id="Ct2jxEpFgsdgMBE1x0vL-25" value="&lt;div&gt;filmapi.dockerfile&lt;/div&gt;" style="swimlane;horizontal=0;whiteSpace=wrap;html=1;rotation=-180;" vertex="1" parent="1">
+          <mxGeometry x="334" y="20" width="214" height="357.5" as="geometry" />
+        </mxCell>
+        <mxCell id="Ct2jxEpFgsdgMBE1x0vL-17" value="&lt;div&gt;recommender.py&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="Ct2jxEpFgsdgMBE1x0vL-25">
+          <mxGeometry x="33" y="65" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Ct2jxEpFgsdgMBE1x0vL-16" value="&lt;div&gt;film_api.py&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="Ct2jxEpFgsdgMBE1x0vL-25">
+          <mxGeometry x="20" y="20" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Ct2jxEpFgsdgMBE1x0vL-28" value="&lt;div&gt;landing page&lt;br&gt;&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="670" y="20" width="140" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="Ct2jxEpFgsdgMBE1x0vL-29" value="recommend" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="Ct2jxEpFgsdgMBE1x0vL-28">
+          <mxGeometry y="30" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Ct2jxEpFgsdgMBE1x0vL-30" value="query customer" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="Ct2jxEpFgsdgMBE1x0vL-28">
+          <mxGeometry y="60" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Ct2jxEpFgsdgMBE1x0vL-31" value="&lt;div&gt;api docs&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="Ct2jxEpFgsdgMBE1x0vL-28">
+          <mxGeometry y="90" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Ct2jxEpFgsdgMBE1x0vL-36" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=-0.017;exitY=1.333;exitDx=0;exitDy=0;exitPerimeter=0;fillColor=default;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="520" y="77.49000000000001" as="sourcePoint" />
+            <mxPoint x="652.04" y="77.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Ct2jxEpFgsdgMBE1x0vL-40" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;fillColor=default;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="500" y="78" as="sourcePoint" />
+            <mxPoint x="652.04" y="77.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Ct2jxEpFgsdgMBE1x0vL-41" value="&lt;div&gt;FastAPI&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="530" y="50" width="120" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
