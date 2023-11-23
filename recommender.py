@@ -1,5 +1,4 @@
 """Functions to use a pre-trained latent semantic analysis model as a recommender."""
-import os
 import pickle
 import warnings
 from pathlib import Path
